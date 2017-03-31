@@ -1,0 +1,37 @@
+<div class="row">
+  
+  <script>
+    $.notify("<%= notice %>", "success");
+  </script>
+  <div class="col-md-8 col-md-offset-2">
+    <div class="jumbotron">
+    
+      <h1><%= "#{t('messages.listing')} #{@kinds.model.model_name.human(count: @kinds.count)}" %></h1>
+      
+    </div>
+    
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th><%= @kinds.model.human_attribute_name("description") %></th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @kinds.each do |kind| %>
+          <tr style="background: <%=cycle('white', '#f0f0f5')%>">
+            <td><%= kind.description %></td>
+            <td><%= link_to t('buttons.edit'), edit_kind_path(kind) %></td>
+            <td><%= link_to t('buttons.destroy'), kind, method: :delete, data: { confirm: t('messages.confirm') } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <br>
+    
+    <%= link_to t('buttons.new'), new_kind_path, class: "btn btn-primary" %>
+    <%= link_to t('buttons.home'), root_path, class: "btn btn-success" %>
+  </div>
+</div>

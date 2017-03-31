@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="well">
+
+          <%= form_for(@kind) do |f| %>
+          
+            <h1><%= t('messages.new_kind') %></h1>
+            
+          
+            <div class="form-group">
+              <%= f.label :description %><br>
+              <%= f.text_field :description, class: 'form-control' %>
+            </div>
+            
+            <div class="actions">
+              <%= f.submit t('buttons.save'), class: "btn btn-primary" %>
+              <%= link_to t('buttons.back'), kinds_path, class: "btn btn-success"%>
+            </div>
+            
+            <% if @kind.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@kind.errors.count, t('messages.errors_kind')) %> </h2>
+          
+                <ul>
+                <% @kind.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            
+            
+          <% end %>
+        </div>
+    </div>
+</div>
